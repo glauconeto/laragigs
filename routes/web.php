@@ -31,12 +31,6 @@ use App\Models\Listing;
 //     return$request->name . ', ' . $request->city;
 // });
 
-// All Listings
-Route::get('/', [ListingController::class, 'index']);
-
-// Single Listing
-Route::get('/listings/{listing}', [ListingController::class, 'show']);
-
 // Padrão de Rotas de recursos:
 // index - Mostra todas os itens
 // show - Requisitar apenas um item
@@ -45,3 +39,9 @@ Route::get('/listings/{listing}', [ListingController::class, 'show']);
 // edit - Retorna um formulário para editar um item
 // update - Armazena o item editado
 // destroy - Deleta um item
+
+// Todos os itens
+Route::get('/', [ListingController::class, 'index']);
+
+// Apenas um item
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
