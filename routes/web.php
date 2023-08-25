@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Listing;
@@ -31,16 +32,16 @@ use App\Models\Listing;
 // });
 
 // All Listings
-Route::get('/', function () {
-    return view('listings', [
-        'heading' => 'Lastest Listings',
-        'listings' => Listing::all()
-    ]);
-});
+Route::get('/', [ListingController::class, 'index']);
 
 // Single Listing
-Route::get('/listings/{listing}', function(Listing $listing) {
-    return view('listing', [
-        'listing' => $listing
-    ]);
-});
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
+// Padrão de Rotas de recursos:
+// index - Mostra todas os itens
+// show - Requisitar apenas um item
+// create - Criar um novo item a partir de um formulário
+// store - Armazena um novo item criado
+// edit - Retorna um formulário para editar um item
+// update - Armazena o item editado
+// destroy - Deleta um item
