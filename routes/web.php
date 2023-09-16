@@ -43,5 +43,11 @@ use App\Models\Listing;
 // Todos os itens
 Route::get('/', [ListingController::class, 'index']);
 
+// Mostra o formulário de criação.
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+// Armazena os dados da listagem
+Route::post('/listings', [ListingController::class, 'store']);
+
 // Apenas um item
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
