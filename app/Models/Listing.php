@@ -15,6 +15,8 @@ class Listing extends Model
      */
     use HasFactory;
 
+    // Comentado por ter utilizado (Model::unguard()) em AppServiceProvider::boot.
+    // Em certos casos, a propriedade fillable é interessante de ser definida.
     // protected $fillable = ['title', 'company', 'location', 'website', 'email', 'description', 'tags'];
 
     /**

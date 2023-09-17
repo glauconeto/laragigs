@@ -46,8 +46,11 @@ Route::get('/', [ListingController::class, 'index']);
 // Mostra o formulário de criação.
 Route::get('/listings/create', [ListingController::class, 'create']);
 
-// Armazena os dados da listagem
+// Armazena os dados do formulário.
 Route::post('/listings', [ListingController::class, 'store']);
+
+// Mostra o formulário de edição.
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
 
 // Apenas um item
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
