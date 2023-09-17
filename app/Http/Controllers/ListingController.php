@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Termwind\Components\Li;
 
 /**
  * Controller de listagem de itens
@@ -20,8 +21,8 @@ class ListingController extends Controller
     {
         return view('listings.index', [
             'listings' => Listing::latest()
-                        ->filter(request(['tag', 'search']))
-                        ->paginate(6)
+                ->filter(request(['tag', 'search']))
+                ->paginate(6)
         ]);
         // Paginate pode ser substituido por simplePaginate(), mudando apenas o estilo.
     }
@@ -36,7 +37,7 @@ class ListingController extends Controller
     {
         return view('listings.show', [
             'listing' => $listing
-        ]); 
+        ]);
     }
 
     /**
@@ -74,7 +75,7 @@ class ListingController extends Controller
 
         return redirect('/')->with('message', 'Listing created successfully!');
     }
-    
+
     /**
      * Mostra o formulário de edição
      *
@@ -83,6 +84,44 @@ class ListingController extends Controller
      */
     public function edit(Listing $listing)
     {
-        return view();
+        return view('listings.edit', ['listing' => $listing]);
+    }
+
+    /**
+     * Atuaiza os dados da listagem, pegos pelo formulário 'edit'
+     * 
+     * @return void
+     */
+    public function update(Request $request, Listing $listing)
+    {
+        $formFields = $request->validate([
+            'title' => 'required',
+            'company' => ['required'],
+            'location' => 'required',
+            'website' => 'required',
+            'email' => ['required', 'email'],
+            'tags' => 'required',
+            'description' => 'required'
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        $listing->update($formFields);
+
+        return back()->with('message', 'Listing updated successfully!');
+    }
+    
+    /**
+     * Método para deletar um item
+     *
+     * @param  mixed $listing
+     * @return void
+     */
+    public function destroy(Listing $listing)
+    {
+        $listing->delete();
+        return redirect('/')->with('message', 'Listing deleted sucessfully');
     }
 }

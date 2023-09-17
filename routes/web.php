@@ -52,5 +52,11 @@ Route::post('/listings', [ListingController::class, 'store']);
 // Mostra o formulário de edição.
 Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
 
-// Apenas um item
+// Atualiza os dados.
+Route::put('/listings/{listing}', [ListingController::class, 'update']);
+
+// Remove o item.
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
+
+// Mostra apenas um item
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
