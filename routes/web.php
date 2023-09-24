@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ListingController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Models\Listing;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,6 @@ Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
 
 // Mostra apenas um item
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
+// Mostra o formulário de registro de usuários.
+Route::get('/register', [UserController::class, 'create']);
