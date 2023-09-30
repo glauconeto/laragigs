@@ -41,22 +41,22 @@ use App\Http\Controllers\ListingController;
 // update - Armazena o item editado
 // destroy - Deleta um item
 
-// Todos os itens
+// Mostra todos os itens
 Route::get('/', [ListingController::class, 'index']);
 
-// Mostra o formulário de criação.
+// Mostra formulário de criação.
 Route::get('/listings/create', [ListingController::class, 'create']);
 
-// Armazena os dados do formulário.
+// Armazena dados do formulário.
 Route::post('/listings', [ListingController::class, 'store']);
 
-// Mostra o formulário de edição.
+// Mostra formulário de edição.
 Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
 
-// Atualiza os dados.
+// Atualiza dados.
 Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
-// Remove o item.
+// Remove item.
 Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
 
 // Mostra apenas um item
@@ -64,3 +64,11 @@ Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
 // Mostra o formulário de registro de usuários.
 Route::get('/register', [UserController::class, 'create']);
+
+// Cria novo usuário.
+Route::post('/users', [UserController::class, 'store']);
+
+// Desloga o usuário.
+Route::post('/logout', [UserController::class, 'logout']);
+
+// Mostra formulário de login.
