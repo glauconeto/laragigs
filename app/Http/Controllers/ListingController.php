@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Termwind\Components\Li;
 
 /**
  * Controller de listagem de itens
@@ -96,6 +95,11 @@ class ListingController extends Controller
      */
     public function update(Request $request, Listing $listing)
     {
+        // Ter certeza que o usuário logado é o criador
+        if ($listing->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+
         $formFields = $request->validate([
             'title' => 'required',
             'company' => ['required'],
@@ -123,6 +127,11 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
+        // Ter certeza que o usuário logado é o criador
+        if ($listing->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+
         $listing->delete();
         return redirect('/')->with('message', 'Listing deleted sucessfully');
     }
