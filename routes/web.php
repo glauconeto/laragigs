@@ -72,3 +72,7 @@ Route::post('/users', [UserController::class, 'store']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 // Mostra formulário de login.
+Route::get('/login', [UserController::class, 'login']);
+
+// Loga o usuário no sistema.
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);

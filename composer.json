@@ -1,7 +1,7 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "A portal of gigs for the software developes.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
